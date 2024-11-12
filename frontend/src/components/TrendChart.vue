@@ -6,6 +6,7 @@
 
 <script>
 import { defineComponent, ref, watch, onMounted } from 'vue';
+import { Bar } from 'vue-chartjs';
 import {
     Chart as ChartJS,
     Title,

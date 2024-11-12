@@ -62,7 +62,7 @@ class SalesService implements SalesServiceInterface
                     'total_sales' => $totalSales,
                 ];
             })->filter(function ($theater) {
-                return $theater->total_sales > 0; // Only return theaters with sales on that date
+                return $theater->total_sales > 0;
             });
     }
 }

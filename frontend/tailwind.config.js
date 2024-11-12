@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
-        './index.html',               // Include your main HTML file
-        './src/**/*.{vue,js,ts,jsx,tsx}', // Include all files in the src folder with these extensions
+        './index.html',
+        './src/**/*.{vue,js,ts,jsx,tsx}',
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
