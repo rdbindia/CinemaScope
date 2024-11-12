@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Resources\SalesTrendResource;
 use App\Http\Resources\TopSaleResource;
 use App\Services\SalesService;
-use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
