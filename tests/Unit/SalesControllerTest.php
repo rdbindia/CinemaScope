@@ -66,4 +66,32 @@ class SalesControllerTest extends TestCase
         $this->assertTrue($responseData['success']);
         $this->assertEquals([], $responseData['data']);
     }
+
+    public function testSalesTrendsReturnsDataSuccessfully()
+    {
+        $startDate = Carbon::now()->format('Y-m-d');
+        $endDate = Carbon::now()->addDay()->format('Y-m-d');
+
+        $this->salesServiceMock
+            ->shouldReceive('getTrendChart')
+            ->once()
+            ->andReturn(collect([
+                (object)['theater_id' => 1, 'theater_name' => 'Theater 1', 'total_sales' => 500],
+                (object)['theater_id' => 2, 'theater_name' => 'Theater 2', 'total_sales' => 600],
+            ]));
+
+        $request = new Request(['start_date' => $startDate, 'end_date' => $endDate]);
+        $this->controller = new SalesController($this->salesServiceMock, $request);
+
+        $response = $this->controller->salesTrends();
+
+        $this->assertInstanceOf(JsonResponse::class, $response);
+        $responseData = $response->getData(true);
+
+        $this->assertTrue($responseData['success']);
+        $this->assertEquals([
+            ['theater_id' => 1, 'theater_name' => 'Theater 1', 'total_sales' => 500],
+            ['theater_id' => 2, 'theater_name' => 'Theater 2', 'total_sales' => 600],
+        ], $responseData['data']);
+    }
 }
