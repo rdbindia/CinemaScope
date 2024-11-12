@@ -37,19 +37,19 @@ npm install
 
 `php artisan key:generate`
 
-### Run Frontend
+### Run Frontend:
 `cd frontend`
 
 `npm run dev`
 
-### Run migrations and seeders
+### Run migrations and seeders:
 
 `php artisan migrate`
 
 `php artisan db:seed`
 
 
-## API Endpoints
+## API Endpoints:
 
 - Fetches the theater with the highest sales for a specific date.
   - GET /api/sale
@@ -61,10 +61,23 @@ npm install
   - Parameters: start_date (YYYY-MM-DD) (required), end_date(YYYY-MM-DD)(optional)
   - Example : /api/trends?start_date=2024-05-01&end_date=2024-05-31
 
-## Screenshots
+## Screenshots:
 
-Sale By Date - <frontend_URI>/
+**Sale By Date - <frontend_URI>/**
+
 ![salebydate.png](salebydate.png) 
 
-Movie Sale Trends - <frontend_URI>/trend
+**Movie Sale Trends - <frontend_URI>/trend**
+
 ![trend.png](trend.png)
+
+## Running the Tests for frontend and backend:
+
+- **Front end test**:
+
+`cd frontend`
+`npm run test`
+
+- **Backend test**
+
+`php artisan test`
