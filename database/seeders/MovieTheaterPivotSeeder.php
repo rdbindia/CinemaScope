@@ -8,7 +8,6 @@ use App\Models\Theater;
 use App\Traits\TruncateTable;
 use Faker\Factory;
 use Faker\Generator;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 
@@ -34,10 +33,12 @@ class MovieTheaterPivotSeeder extends Seeder
         $movieIds = Movie::pluck('id')->toArray();
         $theaterIds = Theater::pluck('id')->toArray();
 
-        // Create unique movie-theater pairs
         foreach ($movieIds as $movieId) {
             foreach ($theaterIds as $theaterId) {
-                // Check if the combination already exists to ensure uniqueness
+                if (rand(0, 100) < 20) {
+                    continue;
+                }
+
                 MovieTheater::firstOrCreate([
                     'movie_id' => $movieId,
                     'theater_id' => $theaterId,

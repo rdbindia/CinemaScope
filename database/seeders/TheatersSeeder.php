@@ -30,6 +30,6 @@ class TheatersSeeder extends Seeder
 
         Schema::enableForeignKeyConstraints();
 
-        Theater::factory()->count(2)->create();
+        Theater::factory()->count(10)->create();
     }
 }

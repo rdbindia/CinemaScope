@@ -15,10 +15,20 @@
 
             <div v-if="sales" class="mt-6 bg-gray-100 p-4 rounded">
                 <h3 class="text-xl font-semibold text-center text-fuchsia-900">Top Theater on {{ date }}:</h3>
-                <p class="text-center mt-2" v-for="sale in sales" :key="sale.id">
-                    <span class="font-semibold text-fuchsia-900">{{ sale.theater }}</span> -
-                    <span class="text-green-600 font-bold text-fuchsia-900">${{ sale.total_sales }}</span>
-                </p>
+
+                <table class="w-full border rounded-md mb-4 text-gray-700">
+                    <thead class="text-left bg-gray-200">
+                        <tr class="border-t border-gray-200 font-semibold text-black">
+                            <td>Theater Name</td>
+                            <td>Total Sales</td>
+                        </tr>
+                    </thead>
+                    <tr class="text-left mt-2" v-for="sale in sales" :key="sale.id">
+                        <td class="font-semibold text-fuchsia-900">{{ sale.theater }}</td>
+                        <td class="text-green-600 font-bold text-fuchsia-900">${{ sale.total_sales }}</td>
+                    </tr>
+                </table>
+
             </div>
         </div>
     </div>

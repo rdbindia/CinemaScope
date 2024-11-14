@@ -43,7 +43,8 @@ class SalesService implements SalesServiceInterface
                     'theater_name' => $theater->theater_name,
                     'total_sales' => $totalSales,
                 ];
-            });
+            })
+            ->sortByDesc('total_sales');
     }
 
     private function queryTopSales($date): Collection
@@ -63,6 +64,7 @@ class SalesService implements SalesServiceInterface
                 ];
             })->filter(function ($theater) {
                 return $theater->total_sales > 0;
-            });
+            })
+            ->sortByDesc('total_sales');
     }
 }

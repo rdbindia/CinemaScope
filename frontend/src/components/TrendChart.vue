@@ -5,17 +5,9 @@
 </template>
 
 <script>
-import { defineComponent, ref, watch, onMounted } from 'vue';
+import { defineComponent, ref, watch, onMounted, onUnmounted } from 'vue';
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
 import { Bar } from 'vue-chartjs';
-import {
-    Chart as ChartJS,
-    Title,
-    Tooltip,
-    Legend,
-    BarElement,
-    CategoryScale,
-    LinearScale,
-} from 'chart.js';
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
@@ -32,8 +24,8 @@ export default defineComponent({
         const chartInstance = ref(null);
 
         const chartOptions = {
-            responsive: false,
-            maintainAspectRatio: true,
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 y: {
                     beginAtZero: true,
@@ -52,14 +44,14 @@ export default defineComponent({
         };
 
         const renderChart = () => {
-            if (chartRef.value && chartRef.value.getContext) {
-                if (chartInstance.value) {
-                    chartInstance.value.destroy();
-                }
+            if (chartInstance.value) {
+                chartInstance.value.destroy();
+            }
 
+            if (chartRef.value) {
                 chartInstance.value = new ChartJS(chartRef.value.getContext('2d'), {
                     type: 'bar',
-                    data: props.chartData,
+                    data: JSON.parse(JSON.stringify(props.chartData)),
                     options: chartOptions,
                 });
             }
@@ -67,15 +59,25 @@ export default defineComponent({
 
         watch(
             () => props.chartData,
-            (newVal, oldVal) => {
-                if (newVal !== oldVal) {
+            (newVal) => {
+                if (newVal) {
                     renderChart();
                 }
+            },
+            {
+                immediate: true,
+                deep: true
             }
         );
 
         onMounted(() => {
             renderChart();
+        });
+
+        onUnmounted(() => {
+            if (chartInstance.value) {
+                chartInstance.value.destroy();
+            }
         });
 
         return {
@@ -89,6 +91,7 @@ export default defineComponent({
 .chart-wrapper {
     position: relative;
     max-width: 100%;
+    height: 100%;
 }
 
 .chart-container {

@@ -63,6 +63,7 @@ export default defineComponent({
             return color;
         };
 
+        console.log(fetchSalesData);
         return {
             chartData,
             fetchSalesData,

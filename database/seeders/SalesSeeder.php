@@ -7,6 +7,7 @@ use App\Models\Sale;
 use App\Models\Theater;
 use App\Traits\TruncateTable;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Faker\Factory;
 use Faker\Generator;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -33,19 +34,27 @@ class SalesSeeder extends Seeder
         Schema::enableForeignKeyConstraints();
 
         $movieTheaters = MovieTheater::all();
+        $startDate = Carbon::parse('2024-05-09');
+        $endDate = Carbon::now();
+
+        $period = CarbonPeriod::create($startDate, $endDate);
 
         foreach ($movieTheaters as $movieTheater) {
-            Sale::create([
-                'movie_theater_id' => $movieTheater->id,
-                'sale_date' => Carbon::parse('2024-05-09'),
-                'sale_amount' => rand(100, 1000),
-            ]);
+            if (rand(0, 100) < 30) {
+                continue;
+            }
 
-            Sale::create([
-                'movie_theater_id' => $movieTheater->id,
-                'sale_date' => Carbon::parse('2024-05-10'),
-                'sale_amount' => rand(100, 1000),
-            ]);
+            foreach ($period as $date) {
+                if (rand(0, 100) < 20) {
+                    continue;
+                }
+
+                Sale::create([
+                    'movie_theater_id' => $movieTheater->id,
+                    'sale_date' => $date->format('Y-m-d'),
+                    'sale_amount' => rand(100, 1000),
+                ]);
+            }
         }
     }
 }

@@ -6,7 +6,7 @@
         </label>
         <label>
             End Date:
-            <input type="date" v-model="endDate" required />
+            <input type="date" v-model="endDate" :min="startDate" required />
         </label>
         <button type="submit" class="text-indigo-600">Generate Chart</button>
     </form>

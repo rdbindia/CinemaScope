@@ -30,6 +30,6 @@ class MoviesSeeder extends Seeder
 
         Schema::enableForeignKeyConstraints();
 
-       Movie::factory()->count(2)->create();
+       Movie::factory()->count(10)->create();
     }
 }
