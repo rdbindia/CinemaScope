@@ -11,6 +11,7 @@ import { RouterView } from 'vue-router'
             <nav class="right-0">
                 <router-link to="/" class="nav-link p-2">Home</router-link>
                 <router-link to="/trend" class="nav-link p-2">Trends</router-link>
+                <router-link to="/booking" class="nav-link p-2">Book Tickets</router-link>
             </nav>
         </header>
 

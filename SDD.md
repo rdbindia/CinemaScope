@@ -31,3 +31,6 @@ CinemaScope is composed of a Laravel backend for data handling, a Vue.js fronten
 - Dockerise Vue
 - Improve performance for large data sets with caching.
 - Add more advanced filtering and reporting features.
+- Expire data for a movie-theater
+- Ability to book tickets
+- Separate Admin and Guest/User views

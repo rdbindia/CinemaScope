@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SalesController;
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +16,3 @@ use Illuminate\Http\Request;
 
 Route::get('/sale', [SalesController::class, 'getTopSales'])->name('sale');
 Route::get('/trends', [SalesController::class, 'salesTrends'])->name('trends');
-Route::get('/test', [TestController::class, 'test'])->name('test');

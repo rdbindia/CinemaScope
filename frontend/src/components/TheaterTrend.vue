@@ -28,7 +28,7 @@ export default defineComponent({
             labels: [],
             datasets: [
                 {
-                    label: 'Total Sales ($)',
+                    label: 'Top Sales ($)',
                     data: [],
                     backgroundColor: [],
                 },
