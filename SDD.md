@@ -34,3 +34,6 @@ CinemaScope is composed of a Laravel backend for data handling, a Vue.js fronten
 - Expire data for a movie-theater
 - Ability to book tickets
 - Separate Admin and Guest/User views
+- Expire data for a movie-theater
+- Ability to book tickets
+- Separate Admin and Guest/User views
